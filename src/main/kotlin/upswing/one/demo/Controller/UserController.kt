@@ -18,6 +18,11 @@ data class UserController(@Autowired val userService: UserService)
 
     }
 
+    @GetMapping("getAllUsers")
+    fun getAllUsers():List<Users>{
+        return userService.getAllUsers()
+    }
+
     @PostMapping("/createUser")
     fun createUser(@RequestBody user: Users):Users{
         return userService.createUser(user)
@@ -31,6 +36,11 @@ data class UserController(@Autowired val userService: UserService)
     @PostMapping("/updateUser")
     fun updateUser(@RequestBody user: Users):Users{
         return userService.updateUser(user)
+    }
+
+    @GetMapping("/getByName")
+    fun getUserByName(@RequestParam name:String):List<Users>{
+        return userService.getByName(name)
     }
 
 }
