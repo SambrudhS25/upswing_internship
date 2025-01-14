@@ -78,7 +78,7 @@ class UserService(@Autowired val userRepo:UserRepo) {
             return user
         } else {
             logger.warn("User with name $name not found.")
-            throw UserNotFoundException("User with name $name not found")
+            throw UserNotFoundException("User with name $name not found  ")
         }
     }
 
