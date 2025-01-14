@@ -1,5 +1,6 @@
 package upswing.one.demo.Service
 
+import jakarta.transaction.Transactional
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,6 +20,7 @@ class UserService(@Autowired val userRepo:UserRepo) {
 
     private val logger: Logger = LoggerFactory.getLogger(UserService::class.java)
 
+    @Transactional
     fun searchUserById(id: Long): Users{
         val user = userRepo.findById(id)
         if (user.isPresent) {
@@ -30,27 +32,30 @@ class UserService(@Autowired val userRepo:UserRepo) {
         }
     }
 
+    @Transactional
     fun createUser(user: Users): Users {
         if (user.id != null) {
             if (userRepo.existsById(user.id)) {
                 logger.warn("Attempted to create user with duplicate id: ${user.id}")
                 throw ConflictException("user with id already exists, try modifying the user details")
+                return user
             }
         }
                 logger.info("User created: $user")
-                return user
+                return userRepo.save(user)
 
     }
 
+    @Transactional
     fun deleteUser(id: Long): String {
         val user = userRepo.findById(id).orElseThrow {
             UserNotFoundException("User with ID $id not found") }
         logger.info("User with ID $id found: ${user.id}")
-        userRepo.deleteById(id)
-        return "successfully removed user"
-
+        userRepo.delete(user)
+        return "user successfully deleted"
     }
 
+    @Transactional
     fun updateUser(user: Users): Users {
         if (user.id != null) {
             if (userRepo.existsById(user.id)) {
@@ -63,6 +68,25 @@ class UserService(@Autowired val userRepo:UserRepo) {
         logger.info("user updated: ${user}")
         return userRepo.save(user)
 
+    }
+
+    @Transactional
+    fun getByName(name:String): List<Users> {
+        val user = userRepo.findByName(name)
+        if (user.isNotEmpty()) {
+            logger.info("User with name $name found: ${user}")
+            return user
+        } else {
+            logger.warn("User with name $name not found.")
+            throw UserNotFoundException("User with name $name not found")
+        }
+    }
+
+
+    @Transactional
+    fun getAllUsers(): List<Users> {
+        logger.info("displaying all users")
+        return userRepo.findAll()
     }
 }
 

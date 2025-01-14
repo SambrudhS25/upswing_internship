@@ -6,4 +6,5 @@ import upswing.one.demo.Model.Users
 
 @Repository
 interface UserRepo: JpaRepository<Users,Long>{
+    fun findByName(name:String):List<Users>
 }
