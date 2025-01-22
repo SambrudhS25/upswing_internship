@@ -50,7 +50,7 @@ class UserService(@Autowired val userRepo:UserRepo) {
     fun deleteUser(id: Long): String {
         val user = userRepo.findById(id).orElseThrow {
             UserNotFoundException("User with ID $id not found") }
-        logger.info("User with ID $id found: ${user.id}")
+        logger.info("User with ID $id found: ${user.id}, deleting user")
         userRepo.delete(user)
         return "user successfully deleted"
     }
@@ -59,7 +59,7 @@ class UserService(@Autowired val userRepo:UserRepo) {
     fun updateUser(user: Users): Users {
         if (user.id != null) {
             if (userRepo.existsById(user.id)) {
-                logger.info("User found with id: ${user.id}")
+                logger.info("User found with id: ${user.id}, updating user details")
             }else {
                 logger.error("user not found")
                 throw BadRequestException("please enter valid id")

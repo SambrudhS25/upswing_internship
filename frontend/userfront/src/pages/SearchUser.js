@@ -2,29 +2,32 @@ import axios from "axios";
 import { useState } from "react";
 
 const SearchUser = () => {
-  const [userId, setUserId] = useState(""); // State to store user input
+  const [userId, setUserId] = useState(""); 
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState("");
 
   async function handleClick() {
     try {
       const response = await axios.get(`http://localhost:8080/user/searchUser?id=${userId}`);
-      setUserData(response.data); // Store fetched user data
-      setError(""); // Clear previous errors
-    } catch (err) {
-      setUserData(null); // Clear previous user data
-      setError("User not found or an error occurred!"); // Display error message
+        setUserData(response.data); 
+      setError(""); 
+      
+      
+    } catch (e) {
+      setUserData(null); 
+      // console.log(e.response);
+      setError("User not found or an error occurred: "+(e.response===undefined?"":e.response.data)); 
     }
   }
 
   async function handleDelete() {
     try {
       const response = await axios.delete(`http://localhost:8080/user/deleteUser?id=${userId}`);
-      setUserData(null); // Clear user data after deletion
-      setError("User successfully deleted."); // Success message
-    } catch (err) {
-      setUserData(null); // Clear previous user data
-      setError("User not found or an error occurred!"); // Display error message
+      setUserData(response.data); 
+      setError("User successfully deleted."); 
+    } catch (e) {
+      setUserData(null); 
+      setError("User not found or an error occurred: "+(e.response===undefined?"":e.response.data)); 
     }
   }
 
@@ -34,7 +37,7 @@ const SearchUser = () => {
         minHeight: "100vh",
         padding: "20px",
         fontFamily: "Arial, sans-serif",
-        background: "linear-gradient(135deg,rgb(108, 134, 177),rgb(158, 79, 43))", 
+        background: "linear-gradient(135deg,rgb(186, 199, 220),rgb(83, 150, 151))", 
       }}
     >
       <h1 style={{ textAlign: "center", color: "#333" }}>Search User</h1>
@@ -43,7 +46,7 @@ const SearchUser = () => {
           type="text"
           placeholder="Enter User ID"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)} // Update userId as the user types
+          onChange={(e) => setUserId(e.target.value)} 
           style={{
             padding: "10px",
             border: "1px solid #ccc",

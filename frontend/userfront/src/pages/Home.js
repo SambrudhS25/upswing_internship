@@ -107,7 +107,7 @@ const Home = () => {
           <p style={{ color: "#888", fontSize: "18px" }}>No users found.</p>
         )}
         {error&&
-          <p style={{ color: "#888", fontSize: "18px" }}>${error}.</p>
+          <p style={{ color: "#888", fontSize: "18px" }}>{error}.</p>
         }
       </div>
     </div>

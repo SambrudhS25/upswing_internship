@@ -26,7 +26,7 @@ const CreateUser = () => {
       setMessage("User created successfully!");
     } catch (e) {
       console.log("Error:", e);
-      setMessage("An error occurred while creating the user.");
+      setMessage("An error occurred while creating the user: "+(e.response===undefined?"":e.response.data));
     }
   };
 
@@ -39,7 +39,7 @@ const CreateUser = () => {
       setMessage("User updated successfully!");
     } catch (e) {
       console.log("Error:", e);
-      setMessage("An error occurred while updating the user.");
+      setMessage("An error occurred while updating the user: "+(e.response===undefined?"":e.response.data));
     }
   };
 
@@ -59,7 +59,7 @@ const CreateUser = () => {
         style={{
           width: "100%",
           maxWidth: "500px",
-          backgroundColor: "#fff",
+          background: "#fff",
           padding: "30px",
           borderRadius: "10px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
