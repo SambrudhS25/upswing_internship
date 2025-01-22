@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import upswing.one.demo.Model.Audit
 import upswing.one.demo.Model.Users
 import upswing.one.demo.Producer.AuditPublisher
 import upswing.one.demo.Service.UserService
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = ["http://localhost:3000"])
-data class UserController(@Autowired val userService: UserService,@Autowired val auditPublisher: AuditPublisher)
+data class UserController(@Autowired val userService: UserService)
 {
     @GetMapping("/searchUser")
     fun searchUserById(@RequestParam(defaultValue = "1") id:Long):Users{
-        auditPublisher.publishMessage("searched for user with id: ${id}")
             return userService.searchUserById(id)
-
     }
 
     @GetMapping("getAllUsers")

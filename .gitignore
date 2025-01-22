@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 ./key
 ./key.pub
-./src/main/resources
+/Users/sambrudh.s/Downloads/demo2/src/main/resources
 ### STS ###
 .apt_generated
 .classpath

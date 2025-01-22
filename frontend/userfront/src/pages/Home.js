@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/user/getAllUsers`);
+        const res = await axios.get(`http://localhost:8081/user/getAllUsers`);
         setUsers(res.data); 
       } catch (e) {
         setError("There was an error fetching details")

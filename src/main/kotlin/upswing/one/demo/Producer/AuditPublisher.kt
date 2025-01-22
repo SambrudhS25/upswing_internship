@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.pulsar.core.PulsarTemplate
 import org.springframework.stereotype.Service
+import upswing.one.demo.Model.Audit
 import upswing.one.demo.Service.UserService
 
 
@@ -16,9 +17,8 @@ class AuditPublisher {
     @Autowired
     private val template:PulsarTemplate<Any>?=null
 
-    fun publishMessage(msg:String){
-        template?.send("Audit-Topic",msg)
+    fun publishMessage(msg:String,audit:Audit){
+        template?.send("Audit-Topic",audit)
         logger.info("AuditPublisher published: ${msg}")
-
     }
 }

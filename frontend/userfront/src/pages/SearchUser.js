@@ -8,7 +8,7 @@ const SearchUser = () => {
 
   async function handleClick() {
     try {
-      const response = await axios.get(`http://localhost:8080/user/searchUser?id=${userId}`);
+      const response = await axios.get(`http://localhost:8081/user/searchUser?id=${userId}`);
         setUserData(response.data); 
       setError(""); 
       
@@ -22,7 +22,7 @@ const SearchUser = () => {
 
   async function handleDelete() {
     try {
-      const response = await axios.delete(`http://localhost:8080/user/deleteUser?id=${userId}`);
+      const response = await axios.delete(`http://localhost:8081/user/deleteUser?id=${userId}`);
       setUserData(response.data); 
       setError("User successfully deleted."); 
     } catch (e) {
