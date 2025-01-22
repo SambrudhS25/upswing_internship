@@ -1,5 +1,6 @@
 package upswing.one.demo.Model
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -15,6 +16,7 @@ data class Audit (
     val id: Long?=null,
     val user_id:Long?=null,
     val action: String?=null,
+    val status:Boolean?=null,
     val timestamp: LocalDateTime = LocalDateTime.now()
 )
 {}

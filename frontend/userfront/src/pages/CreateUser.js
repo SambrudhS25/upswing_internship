@@ -21,7 +21,7 @@ const CreateUser = () => {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await axios.post("http://localhost:8080/user/createUser", user);
+      const res = await axios.post("http://localhost:8081/user/createUser", user);
       setUserData(res.data);
       setMessage("User created successfully!");
     } catch (e) {
@@ -34,7 +34,7 @@ const CreateUser = () => {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await axios.post("http://localhost:8080/user/updateUser", user);
+      const res = await axios.post("http://localhost:8081/user/updateUser", user);
       setUserData(res.data);
       setMessage("User updated successfully!");
     } catch (e) {
