@@ -13,6 +13,6 @@ data class Users (
     val name:String?=null,
     val address:String?=null,
     @Column(unique = true)
-    val phoneNo:Int?=null
+    val phoneNo:Long?=null
 )
 {}
