@@ -10,6 +10,7 @@ import jakarta.persistence.Table
 data class Users (
     @Id
     val id: Long?=null,
+    
     val name:String?=null,
     val address:String?=null,
     @Column(unique = true)
