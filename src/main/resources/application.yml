@@ -5,4 +5,9 @@ spring:
   pulsar:
     client:
       service-url: pulsar://localhost:6650
-
+    consumer:
+      subscription-name: mySubscription
+      dead-letter-policy:
+        maxRedeliverCount: 5
+        deadLetterTopic: "Audit-Topic-DLQ"
+      redelivery-delay: 2s
