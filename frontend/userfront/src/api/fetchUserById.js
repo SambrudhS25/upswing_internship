@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const fetchUserById= async (id)=>{
-  
             try {
                 console.log(id);
               const response = await axios.get(`http://localhost:8081/user/searchUser?id=${id}`);

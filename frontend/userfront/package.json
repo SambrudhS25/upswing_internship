@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@tanstack/react-query": "^5.66.0",
     "antd": "^5.23.3",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
