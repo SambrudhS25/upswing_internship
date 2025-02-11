@@ -3,6 +3,7 @@ import { useState } from "react";
 import { User } from "./useCreateUser";
 import deleteUserById from "../api/DeleteUserById";
 import fetchUserById from "../api/FetchUserById";
+
 const useDeleteUser = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleteUser, setDeleteUser] = useState<User | null>(null);

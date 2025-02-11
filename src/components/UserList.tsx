@@ -92,7 +92,8 @@ const UserList: React.FC = () => {
           handleCancel={handleCancel}
         />
       )}
-      {deleteUser && (
+      {
+      deleteUser && (
         <DeleteUserModal
           record={deleteUser}
           isDeleteModalOpen={isDeleteModalOpen}
