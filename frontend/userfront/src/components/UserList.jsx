@@ -58,7 +58,7 @@ const UserList = () => {
         size="small"
         onClick={() => navigate("/create-user")}
       >
-        Add/Update User
+        Add User
       </Button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <Table

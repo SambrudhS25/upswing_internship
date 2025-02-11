@@ -3,63 +3,49 @@ import { Form, message } from "antd";
 import createUserByDetails from "../api/createUserByDetails";
 import updateUser from "../api/updateUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 const useCreateUser = () => {
   const [form] = Form.useForm();
   const [userData, setUserData] = useState(null);
   const queryClient = useQueryClient();
 
   const userCreate = useMutation({
-    mutationFn: createUserByDetails,
+    mutationFn: (values) => createUserByDetails(values), // Ensure it returns a Promise
     onSuccess: (res) => {
+      setUserData(res.data);
       queryClient.invalidateQueries(["users"]);
       message.success("User created successfully!");
-      setUserData(res.data);
+      form.resetFields();
     },
     onError: () => {
-      message.error("unable to create user");
-      setUserData(null);
+      message.error("Unable to create user");
     },
   });
 
-  const handleSubmit = async (values) => {
-    try {
-      userCreate.mutate(values);
-      form.resetFields();
-    } catch (e) {
-      message.error(
-        "An error occurred while creating the user: " + (e.response?.data || "")
-      );
-    }
-  };
-
   const updateUserMutation = useMutation({
-    mutationFn: updateUser,
+    mutationFn: (values) => updateUser(values), // Ensure it returns a Promise
     onSuccess: (res) => {
       setUserData(res.data);
       queryClient.invalidateQueries(["users"]);
+      message.success("User updated successfully!");
+      form.resetFields();
     },
     onError: () => {
-      message.error("unable to create user");
-      setUserData(null);
+      message.error("Unable to update user");
     },
   });
 
-  const handleUpdate = async (values) => {
-    try {
-      updateUserMutation.mutate(values);
-      message.success("User updated successfully!");
-      console.log(message);
-      form.resetFields();
-    } catch (e) {
-      message.error(
-        "An error occurred while updating the user: " + (e.response?.data || "")
-      );
-    }
+  const handleSubmit = (values) => {
+    userCreate.mutate(values);
   };
+
+  const handleUpdate = (values) => {
+    updateUserMutation.mutate(values);
+  };
+
   return {
     form,
     userData,
-    message,
     handleSubmit,
     handleUpdate,
   };

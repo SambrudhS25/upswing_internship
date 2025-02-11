@@ -1,17 +1,9 @@
 package upswing.one.demo.Controller
 
-import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.*
-import upswing.one.demo.Exception.BadRequestException
-import upswing.one.demo.Model.Audit
 import upswing.one.demo.Model.Users
-import upswing.one.demo.Producer.AuditPublisher
 import upswing.one.demo.Service.UserService
-import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/user")

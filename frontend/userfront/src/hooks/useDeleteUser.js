@@ -11,7 +11,7 @@ const useDeleteUser = () => {
   const deleteUserMutation = useMutation({
     mutationFn: deleteUserById,
     onSuccess: () => {
-      queryClient.invalidateQueries(["users"]); // ✅ Fix 2: Corrected query invalidation
+      queryClient.invalidateQueries(["users"]); 
       alert("User deleted successfully");
     },
     onError: (error) => {
@@ -28,7 +28,6 @@ const useDeleteUser = () => {
     } catch (e) {
       console.log(e);
     }
-    // ✅ Fix 1: Open modal
   };
 
   const handleDeleteOk = () => {

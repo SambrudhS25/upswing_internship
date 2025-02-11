@@ -2,8 +2,7 @@ import { Button, Form, Input } from "antd";
 import useCreateUser from "../hooks/useCreateUser";
 
 const CreateUserForm = ({ user }) => {
-  const { form, userData, message, handleSubmit, handleUpdate } =
-    useCreateUser();
+  const { form, userData, handleSubmit, handleUpdate } = useCreateUser();
   console.log(user);
 
   const handleFormSubmit = (values) => {

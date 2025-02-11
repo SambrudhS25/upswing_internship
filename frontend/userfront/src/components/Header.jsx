@@ -5,7 +5,16 @@ const { Header } = Layout;
 
 const AppHeader = () => {
   return (
-    <Header>
+    <Header
+      style={{
+        padding: 0,
+        background: "#fff",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingLeft: "20px",
+      }}
+    >
       <Breadcrumbs />
     </Header>
   );
