@@ -5,6 +5,7 @@ import { User } from "../hooks/useCreateUser";
 import { ColumnsType } from "antd/es/table";
 import UserInfoModal from "./UserInfoModal";
 import DeleteUserModal from "./DeleteUserModal";
+import { message } from "antd";
 
 const UserList: React.FC = () => {
   const {
@@ -64,12 +65,11 @@ const UserList: React.FC = () => {
         type="primary"
         size="large"
         onClick={() => navigate("/create-user")}
+        style={{ marginBottom: 20, marginTop: 20 }}
       >
         Add User
       </Button>
-      {error && (
-        <p style={{ color: "red" }}>{error.message || "An error occurred"}</p>
-      )}
+      {error && message.error("Error fetching users")}
       {isLoading ? (
         <Skeleton active />
       ) : (
@@ -92,8 +92,7 @@ const UserList: React.FC = () => {
           handleCancel={handleCancel}
         />
       )}
-      {
-      deleteUser && (
+      {deleteUser && (
         <DeleteUserModal
           record={deleteUser}
           isDeleteModalOpen={isDeleteModalOpen}

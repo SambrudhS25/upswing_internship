@@ -35,7 +35,11 @@ const CreateUserForm: React.FC<UserProps> = ({ user }) => {
         onFinish={handleFormSubmit}
         initialValues={user || {}}
       >
-        <Form.Item label="ID" name="id">
+        <Form.Item
+          label="ID"
+          name="id"
+          rules={[{ required: true, message: "Id is required." }]}
+        >
           <Input placeholder="Enter ID" disabled={!!user} />
         </Form.Item>
 

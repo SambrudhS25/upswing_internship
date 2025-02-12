@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { User } from "./useCreateUser";
 import fetchAllUsers from "../api/FetchAllUsers";
 import fetchUserById from "../api/FetchUserById";
+import { message } from "antd";
 
 const useUsers = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -29,6 +30,7 @@ const useUsers = () => {
       setIsModalOpen(true);
     } catch (e) {
       console.error("Error fetching user details", e);
+      message.error("Error fetching user details");
     }
   };
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { User } from "./useCreateUser";
 import deleteUserById from "../api/DeleteUserById";
 import fetchUserById from "../api/FetchUserById";
+import { message } from "antd";
 
 const useDeleteUser = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -13,11 +14,10 @@ const useDeleteUser = () => {
     mutationFn: async (id: number) => deleteUserById(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
-      alert("User deleted successfully");
+      message.success("User deleted successfully!");
     },
     onError: (error) => {
-      console.error("Error deleting user:", error);
-      alert("Failed to delete user");
+      message.error("Error deleting user");
     },
   });
 
@@ -28,6 +28,7 @@ const useDeleteUser = () => {
       setIsDeleteModalOpen(true);
     } catch (e) {
       console.log(e);
+      message.error("Error deleting user");
     }
   };
 
